@@ -1,10 +1,10 @@
-import { View, Text } from "react-native";
 import React from "react";
+import { Container, Title } from "./styles";
 
 export default function Groups() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Groups</Text>
-    </View>
+    <Container>
+      <Title>Groups</Title>
+    </Container>
   );
 }
