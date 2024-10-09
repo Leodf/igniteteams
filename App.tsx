@@ -8,6 +8,7 @@ import {
 } from "@expo-google-fonts/roboto";
 import Loading from "@components/Loading";
 import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -16,9 +17,11 @@ export default function App() {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <StatusBar style="light" backgroundColor="transparent" translucent />
-      {fontsLoaded ? <Groups /> : <Loading />}
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        <StatusBar style="light" backgroundColor="transparent" translucent />
+        {fontsLoaded ? <Groups /> : <Loading />}
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
