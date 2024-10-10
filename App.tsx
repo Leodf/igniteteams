@@ -9,6 +9,7 @@ import {
 import Loading from "@components/Loading";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import NewGroup from "@screens/NewGroup";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -20,7 +21,7 @@ export default function App() {
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
         <StatusBar style="light" backgroundColor="transparent" translucent />
-        {fontsLoaded ? <Groups /> : <Loading />}
+        {fontsLoaded ? <NewGroup /> : <Loading />}
       </ThemeProvider>
     </SafeAreaProvider>
   );
