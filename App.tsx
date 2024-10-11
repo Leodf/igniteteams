@@ -1,5 +1,4 @@
 import { ThemeProvider } from "styled-components/native";
-import Groups from "@screens/Groups";
 import theme from "src/theme";
 import {
   useFonts,
@@ -9,7 +8,7 @@ import {
 import Loading from "@components/Loading";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import NewGroup from "@screens/NewGroup";
+import Players from "@screens/Players";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -21,7 +20,7 @@ export default function App() {
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
         <StatusBar style="light" backgroundColor="transparent" translucent />
-        {fontsLoaded ? <NewGroup /> : <Loading />}
+        {fontsLoaded ? <Players /> : <Loading />}
       </ThemeProvider>
     </SafeAreaProvider>
   );
