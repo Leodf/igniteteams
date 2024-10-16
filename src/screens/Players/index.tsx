@@ -9,10 +9,16 @@ import Filter from "@components/Filter";
 import PlayerCard from "@components/PlayerCard";
 import ListEmpty from "@components/ListEmpty";
 import Button from "@components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Players() {
   const [team, setTeam] = useState("Time A");
   const [players, setPlayers] = useState([]);
+  const navigation = useNavigation();
+
+  function handleBackHome() {
+    navigation.navigate("groups");
+  }
 
   function handleChangeTeam(item: string) {
     return setTeam(item);
@@ -20,7 +26,7 @@ export default function Players() {
 
   return (
     <Container>
-      <Header showBackButton />
+      <Header showBackButton handleBack={handleBackHome} />
       <Highlight
         title="Nome da turma"
         subtitle="adicione a galera e separe os times"

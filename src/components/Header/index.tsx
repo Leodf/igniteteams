@@ -4,13 +4,17 @@ import LogoIMg from "@assets/logo.png";
 
 type HeaderProps = {
   showBackButton?: boolean;
+  handleBack?: () => void;
 };
 
-export default function Header({ showBackButton = false }: HeaderProps) {
+export default function Header({
+  showBackButton = false,
+  handleBack,
+}: HeaderProps) {
   return (
     <Container>
       {showBackButton && (
-        <BackButton>
+        <BackButton onPress={handleBack}>
           <BackIcon />
         </BackButton>
       )}
