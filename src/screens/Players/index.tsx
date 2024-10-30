@@ -1,5 +1,5 @@
-import { FlatList, Alert } from "react-native";
-import React, { useCallback, useState } from "react";
+import { FlatList, Alert, TextInput } from "react-native";
+import React, { useCallback, useState, useRef } from "react";
 import { Container, Form, HeaderList, NumberofPlayers } from "./styles";
 import Header from "@components/Header";
 import Highlight from "@components/Highlight";
@@ -32,6 +32,8 @@ export default function Players() {
   const { group } = route.params as RouteParams;
   const navigation = useNavigation();
 
+  const newPlayerNameInputRef = useRef<TextInput>(null);
+
   function handleBackHome() {
     navigation.navigate("groups");
   }
@@ -53,6 +55,7 @@ export default function Players() {
     };
     try {
       await playerAddByGroup(newPlayer, group);
+      newPlayerNameInputRef.current?.blur();
       setNewPlayerName("");
       fetchPlayersByTeam();
     } catch (error) {
@@ -94,6 +97,9 @@ export default function Players() {
           autoCorrect={false}
           onChangeText={setNewPlayerName}
           value={newPlayerName}
+          inputRef={newPlayerNameInputRef}
+          onSubmitEditing={handleAddPlayer}
+          returnKeyType="done"
         />
         <ButtonIcon icon="add" onPress={handleAddPlayer} />
       </Form>
