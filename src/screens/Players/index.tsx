@@ -19,6 +19,7 @@ import { playerAddByGroup } from "@storage/player/playerAddByGroup";
 import { playerGetByGroupAndTeam } from "@storage/player/playerGetByGroupAndTeam";
 import { PlayerStorageDto } from "@storage/player/playerStorageDto";
 import { playerRemoveByGroup } from "@storage/player/playerRemoveByGroup";
+import { groupRemoveByName } from "@storage/group/groupRemoveByName";
 
 type RouteParams = {
   group: string;
@@ -92,6 +93,23 @@ export default function Players() {
     }
   }
 
+  async function groupRemove() {
+    try {
+      await groupRemoveByName(group);
+      navigation.navigate("groups");
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Remover grupo", "Não foi possível remover o grupo");
+    }
+  }
+
+  async function handleGroupRemove() {
+    Alert.alert("Remover grupo", "Deseja remover o grupo?", [
+      { text: "Não", style: "cancel" },
+      { text: "Sim", onPress: () => groupRemove() },
+    ]);
+  }
+
   useFocusEffect(
     useCallback(() => {
       fetchPlayersByTeam();
@@ -147,7 +165,11 @@ export default function Players() {
           players.length === 0 && { flex: 1 },
         ]}
       />
-      <Button title="Remover turma" type="SECONDARY" />
+      <Button
+        title="Remover turma"
+        type="SECONDARY"
+        onPress={handleGroupRemove}
+      />
     </Container>
   );
 }
